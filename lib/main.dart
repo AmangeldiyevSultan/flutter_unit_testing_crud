@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_unit_testing_crud/model/user_model.dart';
 import 'package:flutter_unit_testing_crud/user_repository.dart';
+import 'package:http/http.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  UserRepository userRepository = UserRepository();
+  UserRepository userRepository = UserRepository(Client()); 
 
   @override 
   void initState() {
@@ -43,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // createModel(); 
     // getModel();    
     // updateModel();
-    // deleteModel();
+    // deleteModel(); 
   
   } 
  

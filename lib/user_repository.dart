@@ -1,5 +1,5 @@
 
-import 'dart:convert';
+import 'dart:convert'; 
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_unit_testing_crud/model/user_model.dart';
@@ -7,6 +7,10 @@ import 'package:http/http.dart' as http;
 
 class UserRepository{
   String uri = "http://192.168.1.72:3001";
+  final http.Client client; 
+  UserRepository(
+    this.client, 
+  );
  
 Future<List<UserModel>> getUser() async {
   List<UserModel> userModel = [];
