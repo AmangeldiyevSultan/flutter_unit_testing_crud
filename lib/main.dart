@@ -40,17 +40,30 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _userModel(); 
+    // createModel(); 
+    // getModel();    
+    // updateModel();
+    // deleteModel();
+  
+  } 
  
+void createModel ( ) async{
+  await  userRepository.createUser('sula', 'sula@mail');
   }
 
-  void _userModel ( ) async{
-  List<UserModel> userModelList = await  userRepository.getUser();
-  userModelList.forEach((element) {
-    print(element.name); 
-    print(element.email); 
- }); 
+  void updateModel ( ) async{
+  await  userRepository.updateUser('sula', 'sultan');
+  } 
+
+  void deleteModel ( ) async{
+  await  userRepository.deleteUser('sultan');
   }
+
+  void getModel ( ) async{
+ await  userRepository.getUser();
+  }
+
+
  
   void _incrementCounter() {
     setState(() {

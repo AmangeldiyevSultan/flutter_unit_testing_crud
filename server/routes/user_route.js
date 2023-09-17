@@ -6,25 +6,25 @@ const userRoute = express.Router()
 userRoute.get('/api/getuser', async(req, res)=> {
     console.log('GETUSER');
     const user = await User.find();
-    console.log(user); 
-    res.json({user});  
+    console.log(user);  
+    res.status(200).json({user});  
 });
  
 //! User Delete
 userRoute.delete('/api/deleteuser/:name', async(req, res)=> {
-  
+    console.log('DELETEUSER'); 
     const name = req.params.name;
     const user = await User.deleteOne({name});
     
-    res.json({user});   
+    res.status(200).json({user});   
 }); 
 
 //! User Update
 userRoute.put('/api/updateuser/', async(req, res)=> {
-   
+   console.log('UPDATEUSER'); 
     const name = req.query.name;
     const newname = req.query.newname;
-     
+      
     let user = await User.findOne({name}); 
     
     if(user){ 
@@ -34,21 +34,24 @@ userRoute.put('/api/updateuser/', async(req, res)=> {
     }  else {
         console.log('That user not exist');
     }
-    res.json({user});   
+    res.status(200).json({user});   
 });
 
 //! User Post
 userRoute.post('/api/newuser', async (req, res)=> {
+    console.log('POSTUSER'); 
+    
     try{
         const {name, email} = req.body;
             user = new User({
                 name, email
             });
+            console.log(user); 
             
             user = await user.save();
-            console.log(user); 
+          
 
-            res.json({user}); 
+            res.status(200).json({user}); 
     } catch (e) {
         res.status(500).json({error: e.message});
     }
