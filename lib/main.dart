@@ -71,8 +71,25 @@ void createModel ( ) async{
     });
   }
 
+  final _usernameContoller = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _usernameContoller.dispose();
+    _passwordController.dispose();
+  }
+ 
+
+  void _login() {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -80,18 +97,16 @@ void createModel ( ) async{
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          children: [
+            TextFormField(
+              controller: _usernameContoller,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            TextFormField(
+              controller: _passwordController,
             ),
-
+            ElevatedButton(onPressed: _login, child: const Text('press'),)
           ],
-        ),
+        )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
@@ -99,5 +114,15 @@ void createModel ( ) async{
         child: const Icon(Icons.add),
       ), 
     );
+  }
+}
+
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(); 
   }
 }
